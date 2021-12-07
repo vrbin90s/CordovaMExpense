@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+<head>
+	<meta charset="utf-8">
+        <!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+            -->
+            <!--        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">-->
+            <meta name="format-detection" content="telephone=no">
+            <meta name="msapplication-tap-highlight" content="no">
+            <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+            
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            
+            <link href="jquery-mobile/jquery.mobile-1.3.0.min.css" rel="stylesheet" type="text/css">
+
+            <link href="jQueryAssets/jquery.ui.core.min.css" rel="stylesheet" type="text/css">
+            <link href="jQueryAssets/jquery.ui.theme.min.css" rel="stylesheet" type="text/css">
+            <link href="jQueryAssets/jquery.ui.datepicker.min.css" rel="stylesheet" type="text/css">
+            <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
+            <link href="css/bootstrap-4.4.1.css" rel="stylesheet" type="text/css">
+            <link rel="stylesheet" href="css/index.css">
+            <script src="jquery-mobile/jquery-1.11.1.min.js"></script>
+            <script src="jquery-mobile/jquery.mobile-1.3.0.min.js"></script>
+            <script src="jQueryAssets/jquery.ui-1.10.4.datepicker.min.js"></script>
+            <title>M-Expense</title>
+        </head>
+        <body>
+        	
+
+        	<!--Home Page-->
+        	<div data-role="page" id="home_page">
+        		<div data-role="header" class="header-wrapper">
+        			<h1>M-Expense</h1>
+        		</div>
+        		<div data-role="content" class="card-wrapper">
+                   
+                    <div class="card" style="width: 100%;">
+                       <div class="img-wrapper">
+                          <img src="img/image_sample.jpg" class="card-img-top" alt="trip image" id="trip_img">
+                      </div>
+                      <div class="card-body">
+                         <h5 class="card-title">Trip Details</h5>
+                         <a href="#new_trip_page" class="title-button-trip">Manage trip details</a>
+                     </div>
+                     <ul class="list-group list-group-flush trip-details">
+                        <li class="list-group-item">Trip Name: <span id="trip_name">Vidukle</span></li>
+                        <li class="list-group-item">Destination: <span id="trip_destination">Lithuania</span> </li>
+                        <li class="list-group-item">Trip Date: <span id="trip_date">10/05/1990</span> </li>
+                        <li class="list-group-item">Return Name: <span id="trip_return_date">10/08/2025</span></li>
+                        <li class="list-group-item">Description: <span id="trip_description">Bussines meeting</span> </li>
+                        <li class="list-group-item">Transportation: <span id="trip_transportation">Train</span> </li>
+                        <li class="list-group-item">Risk Assessment: <span id="risk_assessment_required">No</span> </li>
+                    </ul>
+                </div>
+                
+            </div>
+            
+            <div data-role="footer" id="footer">
+             
+             <!--  Add new trip button  -->
+				<button id="clear_tripDetails">Clear</button>
+				<a href="#home-page">Trip Details</a>
+             <a href="#expenses-page">Expense Details</a>
+             
+             
+         </div>
+     </div> <!--End Home Page-->
+     
+     <!--	Add new Trip Page	-->
+     <div data-role="page" id="new_trip_page">
+      
+      <div data-role="header">
+         <a href="#" data-rel="back" data-ajax="false">Back</a>
+         <h1>Add new trip</h1>
+     </div>
+     <div data-role="content"><!--	Content Start	-->
+         
+         <form method="get" id="tripForm" data-ajax="false">
+            <div class="form-group">
+               <input type="text"  id="tripName" name="tripName" aria-label="Trips Name" placeholder="Enter your trip name">
+               
+           </div>
+           
+           <div class="form-group">
+               <input type="text"  id="destination" aria-label="Destination" placeholder="Enter your trip destination">
+           </div>
+           
+           <div class="form-group">
+               <input type="text" name="tripDate" aria-label="Trip Date" id="tripDate" placeholder="Select your trip date" readonly>
+           </div>
+           
+           <div class="form-group">
+               <input class="metro-skin" type="text" name="returnDate" aria-label="Return Date" id="returnDate" placeholder="Select your return date" readonly>
+           </div>     				
+           
+           <div class="form-group">
+               <input type="text" name="description" aria-label="Description" id="description" placeholder="Enter brief description about your trip">
+           </div>					
+           
+           <div class="form-group">
+               <input type="text" name="transportation" aria-label="Transportation" id="transportation" placeholder="Enter your transportation type">
+           </div>
+           Select your trip image (Optional) <input type="file" id="imgFileInput">
+
+           
+           
+
+           <div data-role="fieldcontain" class="risk-assessment">
+               <h6>Risk Assessment Required?</h6>
+               <fieldset data-role="controlgroup" data-type="horizontal" class="radio">
+                  <input type="radio" name="radio1" id="radio1_0" value="Yes" />
+                  <label for="radio1_0">Yes</label>
+                  <input type="radio" name="radio1" id="radio1_1" value="No" />
+                  <label for="radio1_1">No</label>
+              </fieldset>
+          </div>
+          
+          
+      </form>
+      
+      <div class="d-grid gap-2">
+        <button type="button" form="tripForm" id="submitButton">Submit</button>	
+    </div>
+    
+</div> <!--	Content End	-->
+
+</div>
+<!--	End Add New Trip Page	-->
+<div data-role="page" id="expenses-page">
+        		<div data-role="header" class="header-wrapper">
+        			<h1>M-Expense</h1>
+        		</div>
+        		<div data-role="content" class="card-wrapper">
+                   
+                    <div class="card" style="width: 100%;">
+                       <div class="img-wrapper">
+                          <img src="img/image_sample2.jpg" class="card-img-top" alt="Expenses image" id="expense_img">
+                      </div>
+                      <div class="card-body">
+                         <h5 class="card-title">Expense</h5>
+                         <a href="#add_expense_page" class="title-button-trip">Manage expense details</a>
+                     </div>
+                     <ul class="list-group list-group-flush trip-details">
+                        <li class="list-group-item">Type of the expense: <span id="expense_type">Vidukle</span></li>
+                        <li class="list-group-item">Amount of the expense: <span id="expense_amount">Lithuania</span> </li>
+                        <li class="list-group-item">Time of the expense: <span id="expense_time">10/05/1990</span> </li>
+                        <li class="list-group-item">Additional comments: <span id="expense_comments">10/08/2025</span></li>
+                    </ul>
+                    
+                </div>
+                
+            </div>
+            
+            <div data-role="footer" id="footer">
+             
+             <!--  Add new trip button  -->
+				<button id="clear_expenseDetails">Clear</button>
+			<a href="#home_page">Trip Details</a>
+             <a href="#expenses-page">Expense Details</a>
+             
+             
+         </div>
+</div>
+<div data-role="page" id="add_expense_page">
+<div data-role="header">
+         <a href="#" data-rel="back" data-ajax="false">Back</a>
+         <h1>Add Expense Details</h1>
+     </div>
+     <div data-role="content"><!--	Content Start	-->
+         
+         <form method="get" id="tripForm" data-ajax="false">
+           
+           <div class="form-group">
+               <input type="text"  id="expenseType" aria-label="Type of the expense" placeholder="Enter your expense type">
+           </div>
+           
+           <div class="form-group">
+               <input type="number" name="expenseAmount" aria-label="Amount of the expense" id="expenseAmount" placeholder="Enter expense amount">
+           </div>
+           
+           <div class="form-group">
+               <input  type="text" name="expenseTime" aria-label="Time of the expense" id="expenseTime" placeholder="Select time of the expense" readonly>
+           </div>     				
+           
+           <div class="form-group">
+               <input type="text" name="expenseComment" aria-label="Additional Comments" id="expenseComment" placeholder="Enter brief description about your expense">
+           </div>
+			 Select your expense image (Optional) <input type="file" id="expense_imgFileInput">
+           
+          
+      </form>
+      
+      <div class="d-grid gap-2">
+        <button type="button" form="tripForm" id="expense_submitButton">Submit</button>	
+    </div>
+</div>
+<script src="cordova.js"></script>
+<script src="js/index.js"></script>
+
+</body>
+</html>
